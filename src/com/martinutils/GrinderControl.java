@@ -6,4 +6,6 @@ package com.martinutils;
 public interface GrinderControl
 {
     void start();
+
+    void stop();
 }

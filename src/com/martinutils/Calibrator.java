@@ -41,6 +41,7 @@ public class Calibrator
             {
                 Calibrator.this.totalTime = totalTime;
                 updateState(CalibratorState.INITIALDOSE);
+                control.stop();
             }
         });
     }
@@ -62,6 +63,7 @@ public class Calibrator
             {
                 Calibrator.this.totalTime = totalTime;
                 updateState(CalibratorState.DONE);
+                control.stop();
             }
         });
     }
