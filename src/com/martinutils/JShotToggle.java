@@ -18,6 +18,7 @@ public class JShotToggle extends JToggleButton implements LabelListener
         this.setMinimumSize(new Dimension(200,200));
         this.setPreferredSize(new Dimension(200,200));
         this.setFont(new Font(this.getFont().getName(), Font.PLAIN, 20));
+        this.setBackground(Color.WHITE);
     }
 
     @Override

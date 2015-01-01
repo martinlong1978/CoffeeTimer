@@ -89,6 +89,8 @@ public class MainScreen implements TimerCallback
                     else
                     {
                         aDouble.setSelected(false);
+                        aDouble.setBackground(Color.WHITE);
+                        single.setBackground(Color.BLUE);
                     }
                     disableEvents = false;
                 }
@@ -110,6 +112,8 @@ public class MainScreen implements TimerCallback
                     else
                     {
                         single.setSelected(false);
+                        single.setBackground(Color.WHITE);
+                        aDouble.setBackground(Color.BLUE);
                     }
                     disableEvents = false;
                 }

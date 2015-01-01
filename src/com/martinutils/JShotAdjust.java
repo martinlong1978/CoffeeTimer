@@ -23,6 +23,7 @@ public class JShotAdjust extends JButton
         this.singleShotProperty = singleShotProperty;
         this.setPreferredSize(new Dimension(75, 75));
         this.setFont(new Font(this.getFont().getName(), Font.BOLD, 30));
+        this.setBackground(Color.WHITE);
         this.addActionListener(new ActionListener()
         {
             @Override
