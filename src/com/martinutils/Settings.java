@@ -15,7 +15,7 @@ public class Settings implements ISettings
 
     public Settings(File settingsFile)
     {
-        this(500, 500);
+        this(500, 500, 9, 18);
         this.settingsFile = settingsFile;
         load();
     }
@@ -61,10 +61,12 @@ public class Settings implements ISettings
         }
     }
 
-    public Settings(double rate, double defaultRate)
+    public Settings(double rate, double defaultRate, int singleshot, int doubleshot)
     {
         this.rate = rate;
         this.defaultRate = defaultRate;
+        this.singleShot = singleshot;
+        this.doubleShot = doubleshot;
     }
 
     @Override
@@ -95,4 +97,57 @@ public class Settings implements ISettings
     {
         return defaultRate;
     }
+
+    public void setSingleShot(int singleShot)
+    {
+        this.singleShot = singleShot;
+        save();
+    }
+
+    public void setDoubleShot(int doubleShot)
+    {
+        this.doubleShot = doubleShot;
+        save();
+    }
+
+    public int getSingleShot()
+    {
+        return singleShot;
+    }
+
+    public int getDoubleShot()
+    {
+        return doubleShot;
+    }
+
+    public ShotProperty getDoubleShotProperty()
+    {
+        return new ShotProperty()
+        {
+            public void increase(int amount){
+                doubleShot += amount;
+                save();
+            }
+
+            public int getAmount(){
+                return doubleShot;
+            }
+        };
+    }
+
+    public ShotProperty getSingleShotProperty()
+    {
+        return new ShotProperty()
+        {
+            public void increase(int amount){
+                singleShot += amount;
+                save();
+            }
+
+            public int getAmount(){
+                return singleShot;
+            }
+        };
+    }
+
 }

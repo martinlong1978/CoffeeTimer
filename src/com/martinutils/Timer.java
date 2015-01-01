@@ -10,9 +10,11 @@ public class Timer
     private double rate;
     private long startTime;
     private double currentGrams;
+    private GrinderControl control;
 
-    public Timer(int grams, double startingGrams, ISettings settings)
+    public Timer(int grams, double startingGrams, ISettings settings, GrinderControl control)
     {
+        this.control = control;
         System.out.println("Creating timer for " + grams + " grams starting at " + startingGrams + " using rate " + settings.getRate());
         this.targetGrams = grams;
         this.currentGrams = startingGrams;
@@ -25,6 +27,7 @@ public class Timer
         rate = settings.getRate();
         startTime = System.currentTimeMillis() - (long)(rate * currentGrams);
         System.out.println("Set starttime " + startTime + " current: " + System.currentTimeMillis());
+        control.start();
         new Thread(new Runnable()
         {
             @Override
@@ -44,6 +47,7 @@ public class Timer
                     }
                 }
                 callback.complete(System.currentTimeMillis() - startTime);
+                control.stop();
             }
         }).start();
     }

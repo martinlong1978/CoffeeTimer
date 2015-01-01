@@ -9,13 +9,20 @@ public class TestRun
 
     public static void main(String[] args)
     {
-        Settings settings = new Settings(3500, 500);
+        Settings settings = new Settings(3500, 500, 9, 18);
         cal = new Calibrator(18, settings, new GrinderControl()
         {
             @Override
             public void start()
             {
                 System.out.println("Starting grinder");
+            }
+
+            @Override
+            public void stop()
+            {
+                System.out.println("Stopping grinder");
+
             }
         }, new CalibratorCallback()
         {
@@ -29,7 +36,8 @@ public class TestRun
             public void updateState(CalibratorState state)
             {
                 System.out.println("State: " + state);
-                switch (state){
+                switch (state)
+                {
                     case INITIALDOSE:
                         System.out.println("Entering 14.5 output");
                         cal.enterActualOutput(14.5);

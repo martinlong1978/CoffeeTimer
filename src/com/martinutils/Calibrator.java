@@ -26,8 +26,7 @@ public class Calibrator
     {
         updateState(CalibratorState.DOSING);
         settings.resetRate();
-        Timer timer = new Timer(shotSize, 0, settings);
-        control.start();
+        Timer timer = new Timer(shotSize, 0, settings, control);
         timer.start(new TimerCallback()
         {
             @Override
@@ -41,7 +40,6 @@ public class Calibrator
             {
                 Calibrator.this.totalTime = totalTime;
                 updateState(CalibratorState.INITIALDOSE);
-                control.stop();
             }
         });
     }
@@ -49,7 +47,7 @@ public class Calibrator
     public void enterActualOutput(double output)
     {
         settings.setRate(totalTime / output);
-        Timer timer = new Timer(shotSize, output, settings);
+        Timer timer = new Timer(shotSize, output, settings, control);
         timer.start(new TimerCallback()
         {
             @Override
@@ -63,7 +61,6 @@ public class Calibrator
             {
                 Calibrator.this.totalTime = totalTime;
                 updateState(CalibratorState.DONE);
-                control.stop();
             }
         });
     }
