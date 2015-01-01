@@ -13,22 +13,12 @@ import java.io.File;
  */
 public class MainScreen implements TimerCallback
 {
-    private final JShotToggle single;
-    private final JShotToggle aDouble;
-    private final JButton run;
-    private final JPanel mainPanel;
-    private final JPanel singleFrame;
-    private final JButton singlePlus;
-    private final JButton singleMinus;
-    private final JButton doublePlus;
-    private final JButton doubleMinus;
-    private final JPanel doubleFrame;
+    private final JMainPanel mainPanel;
     private final JLabel progress;
     private Settings settings;
     private GrinderControl control;
-    boolean disableEvents = false;
 
-    JFrame frame;
+    private JFrame frame;
 
     MainScreen(final Settings settings, GrinderControl control)
     {
@@ -36,9 +26,8 @@ public class MainScreen implements TimerCallback
         this.settings = settings;
         this.control = control;
         frame = new JFrame("CoffeeTimer");
-        single = new JShotToggle("Single");
-        aDouble = new JShotToggle("Double");
-        run = new JButton("Run");
+
+        mainPanel = new JMainPanel(settings, control, this);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
         frame.setUndecorated(true);
@@ -47,99 +36,13 @@ public class MainScreen implements TimerCallback
         progress.setHorizontalAlignment(JLabel.CENTER);
         progress.setFont(new Font(progress.getFont().getName(), Font.PLAIN, 30));
 
-        singleFrame = new JPanel();
-        doubleFrame = new JPanel();
-
-        singlePlus = new JShotAdjust("+", 1, settings.getSingleShotProperty(), single);
-        singleMinus = new JShotAdjust("-", -1, settings.getSingleShotProperty(), single);
-        doublePlus = new JShotAdjust("+", 1, settings.getDoubleShotProperty(), aDouble);
-        doubleMinus = new JShotAdjust("-", -1, settings.getDoubleShotProperty(), aDouble);
-
-        singleFrame.setLayout(new BorderLayout());
-        doubleFrame.setLayout(new BorderLayout());
-
-        singleFrame.add(singlePlus, BorderLayout.EAST);
-        singleFrame.add(singleMinus, BorderLayout.WEST);
-        singleFrame.add(single, BorderLayout.NORTH);
-
-        doubleFrame.add(doublePlus, BorderLayout.EAST);
-        doubleFrame.add(doubleMinus, BorderLayout.WEST);
-        doubleFrame.add(aDouble, BorderLayout.NORTH);
-
-        mainPanel = new JPanel();
-        mainPanel.setLayout(new BorderLayout());
-
-
-        //frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-
         frame.getContentPane().setLayout(new BorderLayout());
-
-        single.addItemListener(new ItemListener()
-        {
-            @Override
-            public void itemStateChanged(ItemEvent itemEvent)
-            {
-                if (!disableEvents)
-                {
-                    disableEvents = true;
-                    if (itemEvent.getStateChange() == ItemEvent.DESELECTED)
-                    {
-                        single.setSelected(true);
-                    }
-                    else
-                    {
-                        aDouble.setSelected(false);
-                        aDouble.setBackground(Color.WHITE);
-                        single.setBackground(Color.BLUE);
-                    }
-                    disableEvents = false;
-                }
-            }
-        });
-
-        aDouble.addItemListener(new ItemListener()
-        {
-            @Override
-            public void itemStateChanged(ItemEvent itemEvent)
-            {
-                if (!disableEvents)
-                {
-                    disableEvents = true;
-                    if (itemEvent.getStateChange() == ItemEvent.DESELECTED)
-                    {
-                        aDouble.setSelected(true);
-                    }
-                    else
-                    {
-                        single.setSelected(false);
-                        single.setBackground(Color.WHITE);
-                        aDouble.setBackground(Color.BLUE);
-                    }
-                    disableEvents = false;
-                }
-            }
-        });
-
-        aDouble.setSelected(true);
-
-        run.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent)
-            {
-                startGrind(settings);
-            }
-        });
-
-        mainPanel.add(run, BorderLayout.SOUTH);
-        mainPanel.add(singleFrame, BorderLayout.WEST);
-        mainPanel.add(doubleFrame, BorderLayout.EAST);
         frame.getContentPane().add(mainPanel);
     }
 
-    private void startGrind(Settings settings)
+    public void startGrind(boolean doubleShot)
     {
-        int amount = aDouble.isSelected() ? settings.getDoubleShot() : settings.getSingleShot();
+        int amount =  doubleShot ? settings.getDoubleShot() : settings.getSingleShot();
         frame.getContentPane().remove(mainPanel);
         frame.getContentPane().add(progress);
         Timer t = new Timer(amount, 0, settings, control);

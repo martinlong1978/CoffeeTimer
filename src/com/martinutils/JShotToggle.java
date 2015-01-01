@@ -10,7 +10,7 @@ public class JShotToggle extends JToggleButton implements LabelListener
 {
     private String shot;
 
-    public JShotToggle(String shot)
+    public JShotToggle(String shot, Icon icon)
     {
         super(shot);
         this.shot = shot;
@@ -19,6 +19,10 @@ public class JShotToggle extends JToggleButton implements LabelListener
         this.setPreferredSize(new Dimension(200,200));
         this.setFont(new Font(this.getFont().getName(), Font.PLAIN, 20));
         this.setBackground(Color.WHITE);
+        setVerticalTextPosition(SwingConstants.BOTTOM);
+        setHorizontalTextPosition(SwingConstants.CENTER);
+        setIcon(icon);
+
     }
 
     @Override
