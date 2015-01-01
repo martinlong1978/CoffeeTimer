@@ -11,6 +11,7 @@ public class Timer
     private long startTime;
     private double currentGrams;
     private GrinderControl control;
+    private Thread thread;
 
     public Timer(int grams, double startingGrams, ISettings settings, GrinderControl control)
     {
@@ -25,17 +26,16 @@ public class Timer
     public void start(final TimerCallback callback)
     {
         rate = settings.getRate();
-        startTime = System.currentTimeMillis() - (long)(rate * currentGrams);
+        startTime = System.currentTimeMillis() - (long) (rate * currentGrams);
         System.out.println("Set starttime " + startTime + " current: " + System.currentTimeMillis());
         control.start();
-        new Thread(new Runnable()
+        thread = new Thread(new Runnable()
         {
             @Override
             public void run()
             {
                 while (getWholeGrams() < targetGrams)
                 {
-                    callback.updateOutput(getWholeGrams(), System.currentTimeMillis() - startTime);
                     try
                     {
                         sleepUntilGrams(getWholeGrams() + 1);
@@ -45,16 +45,18 @@ public class Timer
                         Thread.currentThread().interrupt();
                         break;
                     }
+                    callback.updateOutput(getWholeGrams(), System.currentTimeMillis() - startTime);
                 }
                 callback.complete(System.currentTimeMillis() - startTime);
                 control.stop();
             }
-        }).start();
+        });
+        thread.start();
     }
 
     private int getWholeGrams()
     {
-        return (int)Math.floor(currentGrams);
+        return (int) Math.floor(currentGrams);
     }
 
     private void sleepUntilGrams(int i) throws InterruptedException
@@ -65,4 +67,8 @@ public class Timer
         currentGrams = (int) Math.floor((System.currentTimeMillis() - startTime + 10) / rate);
     }
 
+    public void dispose()
+    {
+        thread.interrupt();
+    }
 }

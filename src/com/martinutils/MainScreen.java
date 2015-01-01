@@ -2,10 +2,6 @@ package com.martinutils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.io.File;
 
 /**
@@ -13,8 +9,9 @@ import java.io.File;
  */
 public class MainScreen implements TimerCallback
 {
-    private final JMainPanel mainPanel;
+    private final JGrindPanel grindPanel;
     private final JLabel progress;
+    private final JSetupPanel setupPanel;
     private Settings settings;
     private GrinderControl control;
 
@@ -27,7 +24,8 @@ public class MainScreen implements TimerCallback
         this.control = control;
         frame = new JFrame("CoffeeTimer");
 
-        mainPanel = new JMainPanel(settings, control, this);
+        grindPanel = new JGrindPanel(settings, control, this);
+        setupPanel = new JSetupPanel(settings, control, this);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
         frame.setUndecorated(true);
@@ -37,13 +35,13 @@ public class MainScreen implements TimerCallback
         progress.setFont(new Font(progress.getFont().getName(), Font.PLAIN, 30));
 
         frame.getContentPane().setLayout(new BorderLayout());
-        frame.getContentPane().add(mainPanel);
+        frame.getContentPane().add(grindPanel);
     }
 
     public void startGrind(boolean doubleShot)
     {
-        int amount =  doubleShot ? settings.getDoubleShot() : settings.getSingleShot();
-        frame.getContentPane().remove(mainPanel);
+        int amount = doubleShot ? settings.getDoubleShot() : settings.getSingleShot();
+        frame.getContentPane().removeAll();
         frame.getContentPane().add(progress);
         Timer t = new Timer(amount, 0, settings, control);
         t.start(this);
@@ -96,17 +94,28 @@ public class MainScreen implements TimerCallback
     @Override
     public void complete(long totalTime)
     {
+        reset();
+
+    }
+
+    public void reset()
+    {
         SwingUtilities.invokeLater(new Runnable()
         {
             @Override
             public void run()
             {
                 frame.getContentPane().removeAll();
-                frame.getContentPane().add(mainPanel);
-                mainPanel.updateUI();
-                frame.getContentPane().invalidate();
+                frame.getContentPane().add(grindPanel);
+                grindPanel.updateUI();
             }
         });
+    }
 
+    public void setup()
+    {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(setupPanel);
+        setupPanel.updateUI();
     }
 }

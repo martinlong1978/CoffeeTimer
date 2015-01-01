@@ -12,6 +12,7 @@ public class Calibrator
     private CalibratorCallback callback;
     private CalibratorState state = CalibratorState.START;
     private long totalTime;
+    private Timer timer;
 
 
     public Calibrator(int shotSize, Settings settings, GrinderControl control, CalibratorCallback callback)
@@ -20,13 +21,14 @@ public class Calibrator
         this.settings = settings;
         this.control = control;
         this.callback = callback;
+        updateState(CalibratorState.START);
     }
 
     public void initialDose()
     {
         updateState(CalibratorState.DOSING);
         settings.resetRate();
-        Timer timer = new Timer(shotSize, 0, settings, control);
+        timer = new Timer(shotSize, 0, settings, control);
         timer.start(new TimerCallback()
         {
             @Override
@@ -46,23 +48,34 @@ public class Calibrator
 
     public void enterActualOutput(double output)
     {
+        updateState(CalibratorState.TOPUP);
         settings.setRate(totalTime / output);
-        Timer timer = new Timer(shotSize, output, settings, control);
-        timer.start(new TimerCallback()
+        if (output < shotSize)
         {
-            @Override
-            public void updateOutput(int currentgrams, long time)
+            timer = new Timer(shotSize, output, settings, control);
+            timer.start(new TimerCallback()
             {
-                callback.updateOutput(currentgrams, time);
-            }
+                @Override
+                public void updateOutput(int currentgrams, long time)
+                {
+                    if (callback != null)
+                    {
+                        callback.updateOutput(currentgrams, time);
+                    }
+                }
 
-            @Override
-            public void complete(long totalTime)
-            {
-                Calibrator.this.totalTime = totalTime;
-                updateState(CalibratorState.DONE);
-            }
-        });
+                @Override
+                public void complete(long totalTime)
+                {
+                    Calibrator.this.totalTime = totalTime;
+                    updateState(CalibratorState.DONE);
+                }
+            });
+        }
+        else
+        {
+            updateState(CalibratorState.DONE);
+        }
     }
 
     public long getTotalTime()
@@ -73,8 +86,20 @@ public class Calibrator
     private void updateState(CalibratorState state)
     {
         this.state = state;
-        callback.updateState(state);
+        if (callback != null)
+        {
+            callback.updateState(state);
+        }
     }
 
+    public CalibratorState getState()
+    {
+        return state;
+    }
 
+    public void dispose()
+    {
+        callback = null;
+        timer.dispose();
+    }
 }

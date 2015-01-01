@@ -15,7 +15,7 @@ public class Settings implements ISettings
 
     public Settings(File settingsFile)
     {
-        this(500, 500, 9, 18);
+        this(300, 300, 9, 18);
         this.settingsFile = settingsFile;
         load();
     }
@@ -124,12 +124,14 @@ public class Settings implements ISettings
     {
         return new ShotProperty()
         {
-            public void increase(int amount){
+            public void increase(float amount)
+            {
                 doubleShot += amount;
                 save();
             }
 
-            public int getAmount(){
+            public float getAmount()
+            {
                 return doubleShot;
             }
         };
@@ -139,12 +141,14 @@ public class Settings implements ISettings
     {
         return new ShotProperty()
         {
-            public void increase(int amount){
+            public void increase(float amount)
+            {
                 singleShot += amount;
                 save();
             }
 
-            public int getAmount(){
+            public float getAmount()
+            {
                 return singleShot;
             }
         };

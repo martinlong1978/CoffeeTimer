@@ -5,7 +5,7 @@ package com.martinutils;
  */
 public interface ShotProperty
 {
-    public void increase(int amount);
+    public void increase(float amount);
 
-    public int getAmount();
+    public float getAmount();
 }

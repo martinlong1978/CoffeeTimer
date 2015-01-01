@@ -10,7 +10,7 @@ import java.awt.event.ItemListener;
 /**
  * Created by martin on 01/01/15.
  */
-public class JMainPanel extends JPanel
+public class JGrindPanel extends JPanel
 {
 
     private final JButton run;
@@ -22,7 +22,7 @@ public class JMainPanel extends JPanel
     boolean disableEvents = false;
 
 
-    public JMainPanel(Settings settings, GrinderControl control, final MainScreen mainScreen)
+    public JGrindPanel(Settings settings, GrinderControl control, final MainScreen mainScreen)
     {
 
         run = new JButton("Run");
@@ -92,6 +92,15 @@ public class JMainPanel extends JPanel
             public void actionPerformed(ActionEvent actionEvent)
             {
                 mainScreen.startGrind(doubleFrame.isSelected());
+            }
+        });
+
+        setup.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent)
+            {
+                mainScreen.setup();
             }
         });
 

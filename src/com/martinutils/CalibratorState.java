@@ -5,5 +5,5 @@ package com.martinutils;
  */
 public enum CalibratorState
 {
-    START, DOSING, DONE, INITIALDOSE
+    START, DOSING, DONE, TOPUP, INITIALDOSE
 }
