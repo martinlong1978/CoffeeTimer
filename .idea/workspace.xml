@@ -78,10 +78,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainScreen.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainScreen.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/martinutils/MainScreen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33076924" vertical-offset="128" max-vertical-offset="1470">
+            <state vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="1470">
               <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -94,22 +94,37 @@
       <file leaf-file-name="JMainPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/martinutils/JMainPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.017857" vertical-offset="1613" max-vertical-offset="2115">
-              <caret line="135" column="0" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
+            <state vertical-scroll-proportion="-17.142857" vertical-offset="0" max-vertical-offset="1605">
+              <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1081#1089#0" expanded="true" />
-                <element signature="e#1184#1192#0" expanded="true" />
-                <element signature="e#1586#1589#0" expanded="true" />
-                <element signature="e#1591#1592#0" expanded="true" />
-                <element signature="e#1675#1678#0" expanded="true" />
-                <element signature="e#1764#1767#0" expanded="true" />
-                <element signature="e#1769#1770#0" expanded="true" />
-                <element signature="e#1854#1857#0" expanded="true" />
-                <element signature="e#2503#3219#0" expanded="true" />
-                <element signature="e#3208#3209#0" expanded="true" />
-                <element signature="e#4041#4257#0" expanded="true" />
-                <element signature="e#4246#4247#0" expanded="true" />
+                <element signature="e#878#886#0" expanded="true" />
+                <element signature="e#1019#1027#0" expanded="true" />
+                <element signature="e#1286#1893#0" expanded="true" />
+                <element signature="e#1882#1883#0" expanded="true" />
+                <element signature="e#2614#2834#0" expanded="true" />
+                <element signature="e#2823#2824#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JShotPanel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/martinutils/JShotPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#529#532#0" expanded="true" />
+                <element signature="e#534#535#0" expanded="true" />
+                <element signature="e#604#607#0" expanded="true" />
+                <element signature="e#845#846#0" expanded="true" />
+                <element signature="e#899#900#0" expanded="true" />
+                <element signature="e#952#953#0" expanded="true" />
+                <element signature="e#1002#1003#0" expanded="true" />
+                <element signature="e#1041#1042#0" expanded="true" />
+                <element signature="e#1089#1090#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -118,25 +133,25 @@
       <file leaf-file-name="JShotAdjust.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/martinutils/JShotAdjust.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="110" max-vertical-offset="660">
-              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="80" max-vertical-offset="600">
+              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#722#724#0" expanded="true" />
-                <element signature="e#726#728#0" expanded="true" />
-                <element signature="e#799#801#0" expanded="true" />
-                <element signature="e#877#1167#0" expanded="true" />
-                <element signature="e#1156#1157#0" expanded="true" />
+                <element signature="e#569#571#0" expanded="true" />
+                <element signature="e#573#575#0" expanded="true" />
+                <element signature="e#646#648#0" expanded="true" />
+                <element signature="e#724#1014#0" expanded="true" />
+                <element signature="e#1003#1004#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JShotToggle.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="JShotToggle.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/martinutils/JShotToggle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-              <caret line="22" column="57" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.5769231" vertical-offset="0" max-vertical-offset="540">
+              <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#517#519#0" expanded="true" />
@@ -166,10 +181,11 @@
         <option value="$PROJECT_DIR$/src/com/martinutils/Timer.java" />
         <option value="$PROJECT_DIR$/src/com/martinutils/Calibrator.java" />
         <option value="$PROJECT_DIR$/src/com/martinutils/JShotButton.java" />
-        <option value="$PROJECT_DIR$/src/com/martinutils/JShotAdjust.java" />
         <option value="$PROJECT_DIR$/src/com/martinutils/JShotToggle.java" />
-        <option value="$PROJECT_DIR$/src/com/martinutils/JMainPanel.java" />
         <option value="$PROJECT_DIR$/src/com/martinutils/MainScreen.java" />
+        <option value="$PROJECT_DIR$/src/com/martinutils/JMainPanel.java" />
+        <option value="$PROJECT_DIR$/src/com/martinutils/JShotPanel.java" />
+        <option value="$PROJECT_DIR$/src/com/martinutils/JShotAdjust.java" />
       </list>
     </option>
   </component>
@@ -529,7 +545,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24973376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4143469" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4143469" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
@@ -700,6 +716,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.115766264" vertical-offset="0" max-vertical-offset="907">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -726,61 +743,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/martinutils/JShotAdjust.java">
+    <entry file="file://$PROJECT_DIR$/src/com/martinutils/MainScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="110" max-vertical-offset="660">
-          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="1470">
+          <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#722#724#0" expanded="true" />
-            <element signature="e#726#728#0" expanded="true" />
-            <element signature="e#799#801#0" expanded="true" />
-            <element signature="e#877#1167#0" expanded="true" />
-            <element signature="e#1156#1157#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/martinutils/JShotToggle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-          <caret line="22" column="57" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#517#519#0" expanded="true" />
+            <element signature="e#1037#1039#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/martinutils/JMainPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.017857" vertical-offset="1613" max-vertical-offset="2115">
-          <caret line="135" column="0" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
+        <state vertical-scroll-proportion="-17.142857" vertical-offset="0" max-vertical-offset="1605">
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1081#1089#0" expanded="true" />
-            <element signature="e#1184#1192#0" expanded="true" />
-            <element signature="e#1586#1589#0" expanded="true" />
-            <element signature="e#1591#1592#0" expanded="true" />
-            <element signature="e#1675#1678#0" expanded="true" />
-            <element signature="e#1764#1767#0" expanded="true" />
-            <element signature="e#1769#1770#0" expanded="true" />
-            <element signature="e#1854#1857#0" expanded="true" />
-            <element signature="e#2503#3219#0" expanded="true" />
-            <element signature="e#3208#3209#0" expanded="true" />
-            <element signature="e#4041#4257#0" expanded="true" />
-            <element signature="e#4246#4247#0" expanded="true" />
+            <element signature="e#878#886#0" expanded="true" />
+            <element signature="e#1019#1027#0" expanded="true" />
+            <element signature="e#1286#1893#0" expanded="true" />
+            <element signature="e#1882#1883#0" expanded="true" />
+            <element signature="e#2614#2834#0" expanded="true" />
+            <element signature="e#2823#2824#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/martinutils/MainScreen.java">
+    <entry file="file://$PROJECT_DIR$/src/com/martinutils/JShotPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33076924" vertical-offset="128" max-vertical-offset="1470">
-          <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1037#1039#0" expanded="true" />
+            <element signature="e#529#532#0" expanded="true" />
+            <element signature="e#534#535#0" expanded="true" />
+            <element signature="e#604#607#0" expanded="true" />
+            <element signature="e#845#846#0" expanded="true" />
+            <element signature="e#899#900#0" expanded="true" />
+            <element signature="e#952#953#0" expanded="true" />
+            <element signature="e#1002#1003#0" expanded="true" />
+            <element signature="e#1041#1042#0" expanded="true" />
+            <element signature="e#1089#1090#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/martinutils/JShotAdjust.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="80" max-vertical-offset="600">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#569#571#0" expanded="true" />
+            <element signature="e#573#575#0" expanded="true" />
+            <element signature="e#646#648#0" expanded="true" />
+            <element signature="e#724#1014#0" expanded="true" />
+            <element signature="e#1003#1004#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/martinutils/JShotToggle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5769231" vertical-offset="0" max-vertical-offset="540">
+          <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#517#519#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -12,15 +12,11 @@ import java.awt.event.ItemListener;
  */
 public class JShotAdjust extends JButton
 {
-    private int amount;
-    private ShotProperty singleShotProperty;
 
     public JShotAdjust(String label, final int amount, final ShotProperty singleShotProperty, final LabelListener labelListener)
     {
         super(label);
         labelListener.updateLabel(singleShotProperty.getAmount()+ "g");
-        this.amount = amount;
-        this.singleShotProperty = singleShotProperty;
         this.setPreferredSize(new Dimension(75, 75));
         this.setFont(new Font(this.getFont().getName(), Font.BOLD, 30));
         this.setBackground(Color.WHITE);
