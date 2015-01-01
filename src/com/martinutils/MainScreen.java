@@ -23,6 +23,9 @@ public class MainScreen implements TimerCallback
         this.settings = settings;
         this.control = control;
         frame = new JFrame("CoffeeTimer");
+        frame.setMaximumSize(new Dimension(320,240));
+        frame.setMinimumSize(new Dimension(320, 240));
+        frame.setPreferredSize(new Dimension(320,240));
 
         grindPanel = new JGrindPanel(settings, control, this);
         setupPanel = new JSetupPanel(settings, control, this);

@@ -14,10 +14,8 @@ public class JShotToggle extends JToggleButton implements LabelListener
     {
         super(shot);
         this.shot = shot;
-        this.setSize(200, 200);
-        this.setMinimumSize(new Dimension(200, 200));
-        this.setPreferredSize(new Dimension(200, 200));
-        this.setFont(new Font(this.getFont().getName(), Font.PLAIN, 20));
+        this.setPreferredSize(new Dimension(160, 160));
+        this.setFont(new Font(this.getFont().getName(), Font.PLAIN, 18));
         this.setBackground(Color.WHITE);
         setVerticalTextPosition(SwingConstants.BOTTOM);
         setHorizontalTextPosition(SwingConstants.CENTER);

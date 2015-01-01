@@ -29,7 +29,7 @@ public class JSetupPanel extends JPanel implements CalibratorCallback, ActionLis
 
         outputLabel = new JLabel("0.0");
         outputLabel.setFont(new Font(outputLabel.getFont().getName(), Font.PLAIN, 35));
-        outputLabel.setBorder(new EmptyBorder(10, 15, 10, 15));
+        outputLabel.setBorder(new EmptyBorder(10, 25, 10, 25));
 
         controlPanel = new JPanel();
 
@@ -45,10 +45,10 @@ public class JSetupPanel extends JPanel implements CalibratorCallback, ActionLis
         c.gridheight = 2;
         c.gridwidth = 1;
         button.addActionListener(this);
-        button.setPreferredSize(new Dimension(150, 150));
+        button.setPreferredSize(new Dimension(320, 100));
         add(button, c);
 
-        button.setFont(new Font(button.getFont().getName(), Font.PLAIN, 30));
+        button.setFont(new Font(button.getFont().getName(), Font.PLAIN, 20));
 
         ShotProperty sp = new ShotProperty()
         {

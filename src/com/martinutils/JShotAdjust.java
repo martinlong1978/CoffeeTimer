@@ -24,7 +24,7 @@ public class JShotAdjust extends JButton
         super(label);
         labelListener.updateLabel(singleShotProperty.getAmount() + "g");
         this.setPreferredSize(new Dimension(size, size));
-        this.setFont(new Font(this.getFont().getName(), Font.BOLD, 30));
+        this.setFont(new Font(this.getFont().getName(), Font.BOLD, 28));
         this.setBackground(Color.WHITE);
         this.addActionListener(new ActionListener()
         {
