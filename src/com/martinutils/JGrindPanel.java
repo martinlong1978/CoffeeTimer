@@ -20,10 +20,13 @@ public class JGrindPanel extends JPanel
     private final JPanel buttonPanel;
 
     boolean disableEvents = false;
+    private long lockout;
+    private MainScreen mainScreen;
 
 
     public JGrindPanel(Settings settings, GrinderControl control, final MainScreen mainScreen)
     {
+        this.mainScreen = mainScreen;
 
         run = new JButton("Run");
         setup = new JButton("Setup");
@@ -91,7 +94,7 @@ public class JGrindPanel extends JPanel
             @Override
             public void actionPerformed(ActionEvent actionEvent)
             {
-                mainScreen.startGrind(doubleFrame.isSelected());
+                grinderActivated();
             }
         });
 
@@ -111,5 +114,27 @@ public class JGrindPanel extends JPanel
 
     }
 
+    public void grinderActivated()
+    {
+        if(lockcheck())
+        {
+            mainScreen.startGrind(doubleFrame.isSelected());
+        }
+    }
 
+    public void setLockout(int sec)
+    {
+        lockout = System.currentTimeMillis() + (1000 * sec);
+    }
+
+    private boolean lockcheck()
+    {
+        if (System.currentTimeMillis() > lockout)
+        {
+            // Immediately lock out for 1 min
+            setLockout(60);
+            return true;
+        }
+        return false;
+    }
 }

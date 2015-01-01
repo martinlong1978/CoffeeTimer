@@ -20,6 +20,7 @@ public class JSetupPanel extends JPanel implements CalibratorCallback, ActionLis
     private GrinderControl control;
     private MainScreen mainScreen;
     private float output = 0;
+    private long lockout = 0;
 
     public JSetupPanel(Settings settings, GrinderControl control, MainScreen mainScreen)
     {
@@ -133,6 +134,7 @@ public class JSetupPanel extends JPanel implements CalibratorCallback, ActionLis
                 button.setLabel("Cancel");
                 break;
             case INITIALDOSE:
+                setLockout(5);
                 button.setLabel("Done");
                 break;
             case TOPUP:
@@ -151,14 +153,20 @@ public class JSetupPanel extends JPanel implements CalibratorCallback, ActionLis
         switch (calibrator.getState())
         {
             case START:
-                calibrator.initialDose();
+                if (lockcheck())
+                {
+                    calibrator.initialDose();
+                }
                 break;
             case DOSING:
                 reset();
                 mainScreen.reset();
                 break;
             case INITIALDOSE:
-                calibrator.enterActualOutput(output);
+                if (lockcheck())
+                {
+                    calibrator.enterActualOutput(output);
+                }
                 break;
             case TOPUP:
                 reset();
@@ -168,9 +176,45 @@ public class JSetupPanel extends JPanel implements CalibratorCallback, ActionLis
 
     }
 
+    private boolean lockcheck()
+    {
+        if (System.currentTimeMillis() > lockout)
+        {
+            // Immediately lock out for 1 min
+            setLockout(60);
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public void updateLabel(String value)
     {
         // Do nothing
+    }
+
+
+    public void grinderActivated()
+    {
+        switch (calibrator.getState())
+        {
+            case START:
+                if (lockcheck())
+                {
+                    calibrator.initialDose();
+                }
+                break;
+            case INITIALDOSE:
+                if (lockcheck())
+                {
+                    calibrator.enterActualOutput(output);
+                }
+                break;
+        }
+    }
+
+    private void setLockout(int sec)
+    {
+        lockout = System.currentTimeMillis() + (1000 * sec);
     }
 }

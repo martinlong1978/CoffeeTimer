@@ -1,8 +1,15 @@
 package com.martinutils;
 
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
+import javax.swing.text.Keymap;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by martin on 31/12/14.
@@ -14,6 +21,8 @@ public class MainScreen implements TimerCallback
     private final JSetupPanel setupPanel;
     private Settings settings;
     private GrinderControl control;
+    private long lockout;
+    private boolean settingsScreen = false;
 
     private JFrame frame;
 
@@ -23,9 +32,9 @@ public class MainScreen implements TimerCallback
         this.settings = settings;
         this.control = control;
         frame = new JFrame("CoffeeTimer");
-        frame.setMaximumSize(new Dimension(320,240));
+        frame.setMaximumSize(new Dimension(320, 240));
         frame.setMinimumSize(new Dimension(320, 240));
-        frame.setPreferredSize(new Dimension(320,240));
+        frame.setPreferredSize(new Dimension(320, 240));
 
         grindPanel = new JGrindPanel(settings, control, this);
         setupPanel = new JSetupPanel(settings, control, this);
@@ -64,7 +73,7 @@ public class MainScreen implements TimerCallback
 
     public static void main(String[] args)
     {
-        new MainScreen(new Settings(new File("coffee.settings")), new GrinderControl()
+        MainScreen screen = new MainScreen(new Settings(new File("coffee.settings")), new GrinderControl()
         {
             @Override
             public void start()
@@ -77,7 +86,21 @@ public class MainScreen implements TimerCallback
             {
                 System.out.println("Stopping grinder");
             }
-        }).show();
+        });
+        screen.show();
+
+        while (true)
+        {
+            try
+            {
+                System.in.read();
+                screen.grinderActivated();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
 
     }
 
@@ -98,11 +121,12 @@ public class MainScreen implements TimerCallback
     public void complete(long totalTime)
     {
         reset();
-
+        grindPanel.setLockout(5);
     }
 
     public void reset()
     {
+        settingsScreen = false;
         SwingUtilities.invokeLater(new Runnable()
         {
             @Override
@@ -117,8 +141,21 @@ public class MainScreen implements TimerCallback
 
     public void setup()
     {
+        settingsScreen = true;
         frame.getContentPane().removeAll();
         frame.getContentPane().add(setupPanel);
         setupPanel.updateUI();
+    }
+
+    public void grinderActivated()
+    {
+        if (settingsScreen)
+        {
+            setupPanel.grinderActivated();
+        }
+        else
+        {
+            grindPanel.grinderActivated();
+        }
     }
 }
