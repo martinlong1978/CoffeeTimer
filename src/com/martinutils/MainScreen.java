@@ -1,5 +1,10 @@
 package com.martinutils;
 
+import com.pi4j.io.gpio.*;
+import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
+import com.pi4j.io.gpio.event.GpioPinListener;
+import com.pi4j.io.gpio.event.GpioPinListenerDigital;
+
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.Keymap;
@@ -16,6 +21,10 @@ import java.io.IOException;
  */
 public class MainScreen implements TimerCallback
 {
+
+    // 5 and 6 are in use by PiTFT. Doh! Use 2 and 3
+    public static final Pin INPUT_PIN = RaspiPin.GPIO_02;  //Pin 13
+    public static final Pin OUTPUT_PIN = RaspiPin.GPIO_03; //Pin 15 - Relay 1
     private final JGrindPanel grindPanel;
     private final JLabel progress;
     private final JSetupPanel setupPanel;
@@ -73,21 +82,26 @@ public class MainScreen implements TimerCallback
 
     public static void main(String[] args)
     {
-        MainScreen screen = new MainScreen(new Settings(new File("coffee.settings")), new GrinderControl()
+
+        final GpioController gpio = GpioFactory.getInstance();
+
+        GpioPinDigitalInput grindButton = gpio.provisionDigitalInputPin(INPUT_PIN, "GrindButton", PinPullResistance.PULL_UP);
+        GpioPinDigitalOutput grindMotor = gpio.provisionDigitalOutputPin(OUTPUT_PIN, "GrindMotor", PinState.LOW);
+
+        final MainScreen screen = new MainScreen(new Settings(new File("coffee.settings")), new RaspPiGrinderControl(grindMotor));
+        screen.show();
+
+        grindButton.addListener(new GpioPinListenerDigital()
         {
             @Override
-            public void start()
+            public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent gpioPinDigitalStateChangeEvent)
             {
-                System.out.println("Starting grinder");
-            }
-
-            @Override
-            public void stop()
-            {
-                System.out.println("Stopping grinder");
+                if(gpioPinDigitalStateChangeEvent.getState() == PinState.HIGH)
+                {
+                    screen.grinderActivated();
+                }
             }
         });
-        screen.show();
 
         while (true)
         {
