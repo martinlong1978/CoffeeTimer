@@ -96,7 +96,7 @@ public class MainScreen implements TimerCallback
             @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent gpioPinDigitalStateChangeEvent)
             {
-                if(gpioPinDigitalStateChangeEvent.getState() == PinState.HIGH)
+                if(gpioPinDigitalStateChangeEvent.getState() == PinState.LOW)
                 {
                     screen.grinderActivated();
                 }
