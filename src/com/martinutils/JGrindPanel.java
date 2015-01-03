@@ -2,10 +2,7 @@ package com.martinutils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 
 /**
  * Created by martin on 01/01/15.
@@ -42,9 +39,6 @@ public class JGrindPanel extends JPanel
 
         setLayout(new BorderLayout());
 
-
-        //frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-
         singleFrame.addItemListener(new ItemListener()
         {
             @Override
@@ -60,6 +54,7 @@ public class JGrindPanel extends JPanel
                     else
                     {
                         doubleFrame.setSelected(false);
+                        System.out.println("Selected single");
                     }
                     disableEvents = false;
                 }
@@ -80,6 +75,7 @@ public class JGrindPanel extends JPanel
                     }
                     else
                     {
+                        System.out.println("Selected double");
                         singleFrame.setSelected(false);
                     }
                     disableEvents = false;
@@ -116,7 +112,7 @@ public class JGrindPanel extends JPanel
 
     public void grinderActivated()
     {
-        if(lockcheck())
+        if (lockcheck())
         {
             mainScreen.startGrind(doubleFrame.isSelected());
         }

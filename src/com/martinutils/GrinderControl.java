@@ -8,4 +8,7 @@ public interface GrinderControl
     void start();
 
     void stop();
+
+    void addGrindButtonListener(GrindButtonListener listener);
+
 }

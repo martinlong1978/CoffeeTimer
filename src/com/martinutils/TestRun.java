@@ -24,6 +24,12 @@ public class TestRun
                 System.out.println("Stopping grinder");
 
             }
+
+            @Override
+            public void addGrindButtonListener(GrindButtonListener listener)
+            {
+
+            }
         }, new CalibratorCallback()
         {
             @Override
