@@ -62,8 +62,7 @@ public class MainScreen implements TimerCallback
         final Display display = new File("/dev/fb1").exists() ? new FrameBufferDisplay() : new TestDisplay();
         final GrinderControl grinderControl = new File("/dev/fb1").exists() ? new RaspPiGrinderControl() : new DummyGrinderControl();
 
-
-        final MainScreen screen = new MainScreen(new Settings(new File("coffee.settings")), grinderControl, display.getContainer());
+        final MainScreen screen = new MainScreen(new Settings(new File("/opt/coffee/coffee.settings")), grinderControl, display.getContainer());
         display.show();
         grinderControl.addGrindButtonListener(new GrindButtonListener()
         {
