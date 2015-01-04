@@ -1,0 +1,2 @@
+Main-Class: com.martinutils.MainScreen
+Class-Path: /opt/pi4j/lib/pi4j-core.jar /opt/pi4j/lib/pi4j-device.jar /opt/pi4j/lib/pi4j-gpio-extension.jar /opt/pi4j/lib/pi4j-service.jar

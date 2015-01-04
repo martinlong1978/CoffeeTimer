@@ -1,0 +1,2 @@
+rm Coffee.jar
+jar cfmv Coffee.jar Manifest.txt -C out/production/CoffeeTimer/ .
