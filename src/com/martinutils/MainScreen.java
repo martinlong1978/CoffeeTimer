@@ -1,13 +1,8 @@
 package com.martinutils;
 
-import com.pi4j.io.gpio.*;
-import org.tw.pi.framebuffer.FrameBuffer;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.File;
-import java.io.IOException;
 
 /**
  * Created by martin on 31/12/14.
@@ -19,6 +14,7 @@ public class MainScreen implements TimerCallback
     private final JGrindPanel grindPanel;
     private final JLabel progress;
     private final JSetupPanel setupPanel;
+    private final TimerScreen timerPanel;
     private Settings settings;
     private GrinderControl control;
     private boolean settingsScreen = false;
@@ -34,6 +30,7 @@ public class MainScreen implements TimerCallback
 
         grindPanel = new JGrindPanel(settings, control, this);
         setupPanel = new JSetupPanel(settings, control, this);
+        timerPanel = new TimerScreen(this);
 
 
         progress = new JLabel("Ground 0g\n in 0s");
@@ -54,6 +51,14 @@ public class MainScreen implements TimerCallback
         parentContainer.add(progress);
         Timer t = new Timer(amount, 0, settings, control);
         t.start(this);
+    }
+
+    public void startTimer()
+    {
+        parentContainer.removeAll();
+        parentContainer.add(timerPanel);
+        timerPanel.updateUI();
+        timerPanel.start();
     }
 
     public static void main(String[] args)

@@ -16,14 +16,14 @@ public class JShotAdjust extends JButton
 
     public JShotAdjust(String label, final float amount, final ShotProperty singleShotProperty, final LabelListener labelListener)
     {
-        this(label, amount, singleShotProperty, labelListener, 75);
+        this(label, amount, singleShotProperty, labelListener, 75, 75);
     }
 
-    public JShotAdjust(String label, final float amount, final ShotProperty singleShotProperty, final LabelListener labelListener, int size)
+    public JShotAdjust(String label, final float amount, final ShotProperty singleShotProperty, final LabelListener labelListener, int x, int y)
     {
         super(label);
-        labelListener.updateLabel(singleShotProperty.getAmount() + "g");
-        this.setPreferredSize(new Dimension(size, size));
+        labelListener.updateLabel((int)singleShotProperty.getAmount() + "g");
+        this.setPreferredSize(new Dimension(x, y));
         this.setFont(new Font(this.getFont().getName(), Font.BOLD, 28));
         this.setBackground(Color.WHITE);
         this.addActionListener(new ActionListener()
@@ -33,7 +33,7 @@ public class JShotAdjust extends JButton
             {
 
                 singleShotProperty.increase(amount);
-                labelListener.updateLabel(singleShotProperty.getAmount() + "g");
+                labelListener.updateLabel((int)singleShotProperty.getAmount() + "g");
             }
         });
     }

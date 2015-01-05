@@ -14,7 +14,7 @@ public class JSetupPanel extends JPanel implements CalibratorCallback, ActionLis
 {
     private final JPanel controlPanel;
     private Calibrator calibrator;
-    private final Button button;
+    private final JButton button;
     private final JLabel outputLabel;
     private Settings settings;
     private GrinderControl control;
@@ -39,17 +39,17 @@ public class JSetupPanel extends JPanel implements CalibratorCallback, ActionLis
 
         GridBagConstraints c = new GridBagConstraints();
 
-        button = new Button("Start");
+        button = new JStyleButton("Start");
+        button.setFont(new Font(getFont().getName(), Font.PLAIN, 40));
 
         c.gridx = 0;
         c.gridy = 0;
         c.gridheight = 2;
         c.gridwidth = 1;
         button.addActionListener(this);
-        button.setPreferredSize(new Dimension(320, 100));
+        button.setPreferredSize(new Dimension(250, 100));
         add(button, c);
 
-        button.setFont(new Font(button.getFont().getName(), Font.PLAIN, 20));
 
         ShotProperty sp = new ShotProperty()
         {
@@ -71,16 +71,16 @@ public class JSetupPanel extends JPanel implements CalibratorCallback, ActionLis
 
         c.gridx = 1;
         c.gridy = 0;
-        controlPanel.add(new JShotAdjust("+", 1, sp, this, 60), c);
+        controlPanel.add(new JShotAdjust("+", 1, sp, this, 60, 60), c);
         c.gridx = 1;
         c.gridy = 1;
-        controlPanel.add(new JShotAdjust("-", -1, sp, this, 60), c);
+        controlPanel.add(new JShotAdjust("-", -1, sp, this, 60, 60), c);
         c.gridx = 3;
         c.gridy = 0;
-        controlPanel.add(new JShotAdjust("+", 0.1f, sp, this, 60), c);
+        controlPanel.add(new JShotAdjust("+", 0.1f, sp, this, 60, 60), c);
         c.gridx = 3;
         c.gridy = 1;
-        controlPanel.add(new JShotAdjust("-", -0.1f, sp, this, 60), c);
+        controlPanel.add(new JShotAdjust("-", -0.1f, sp, this, 60, 60), c);
 
         c.gridx = 2;
         c.gridy = 0;
@@ -105,6 +105,7 @@ public class JSetupPanel extends JPanel implements CalibratorCallback, ActionLis
 
     private void reset()
     {
+        setLockout(0);
         remove(controlPanel);
         setOutput(0);
         if (calibrator != null)
@@ -163,7 +164,7 @@ public class JSetupPanel extends JPanel implements CalibratorCallback, ActionLis
                 mainScreen.reset();
                 break;
             case INITIALDOSE:
-                if (lockcheck())
+                if (output >= settings.getDoubleShot() || lockcheck())
                 {
                     calibrator.enterActualOutput(output);
                 }

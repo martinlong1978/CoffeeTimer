@@ -17,12 +17,13 @@ public class JShotPanel extends javax.swing.JPanel
     {
         toggleButton = new JShotToggle(name, icon);
 
-        setLayout(new BorderLayout());
-        plusButton = new JShotAdjust("+", 1, shotProperty, toggleButton);
-        minusButton = new JShotAdjust("-", -1, shotProperty, toggleButton);
-        add(plusButton, BorderLayout.EAST);
-        add(minusButton, BorderLayout.WEST);
-        add(toggleButton, BorderLayout.NORTH);
+        setLayout(new FlowLayout());
+        setPreferredSize(new Dimension(160,160));
+        plusButton = new JShotAdjust("+", 1, shotProperty, toggleButton, 68, 40);
+        minusButton = new JShotAdjust("-", -1, shotProperty, toggleButton, 68, 40);
+        add(toggleButton);
+        add(plusButton);
+        add(minusButton);
 
     }
 

@@ -15,6 +15,7 @@ public class JGrindPanel extends JPanel
     private final JShotPanel doubleFrame;
     private final JButton setup;
     private final JPanel buttonPanel;
+    private final JButton timer;
 
     boolean disableEvents = false;
     private long lockout;
@@ -25,14 +26,17 @@ public class JGrindPanel extends JPanel
     {
         this.mainScreen = mainScreen;
 
-        run = new JButton("Run");
-        setup = new JButton("Setup");
+        run = new JStyleButton("Run");
+        setup = new JStyleButton("Setup");
+        timer = new JStyleButton("Timer");
+
 
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
 
         buttonPanel.add(run);
         buttonPanel.add(setup);
+        buttonPanel.add(timer);
 
         singleFrame = new JShotPanel("Single", new ImageIcon(getClass().getResource("coffeesingle.png")), settings.getSingleShotProperty());
         doubleFrame = new JShotPanel("Double", new ImageIcon(getClass().getResource("coffeedouble.png")), settings.getDoubleShotProperty());
@@ -100,6 +104,15 @@ public class JGrindPanel extends JPanel
             public void actionPerformed(ActionEvent actionEvent)
             {
                 mainScreen.setup();
+            }
+        });
+
+        timer.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                mainScreen.startTimer();
             }
         });
 
