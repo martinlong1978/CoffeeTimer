@@ -21,7 +21,7 @@ public class RaspPiGrinderControl implements GrinderControl
         final GpioController gpio = GpioFactory.getInstance();
 
         GpioPinDigitalInput grindButton = gpio.provisionDigitalInputPin(INPUT_PIN, "GrindButton", PinPullResistance.PULL_UP);
-        GpioPinDigitalOutput grindMotor = gpio.provisionDigitalOutputPin(OUTPUT_PIN, "GrindMotor", PinState.LOW);
+        grindMotor = gpio.provisionDigitalOutputPin(OUTPUT_PIN, "GrindMotor", PinState.LOW);
 
         grindButton.addListener(new GpioPinListenerDigital()
         {
