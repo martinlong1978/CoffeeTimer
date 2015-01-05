@@ -64,7 +64,7 @@ public class MainScreen implements TimerCallback
     public static void main(String[] args)
     {
 
-        final Display display = new File("/dev/fb1").exists() ? new FrameBufferDisplay() : new TestDisplay();
+        final Display display = new XDisplay();
         final GrinderControl grinderControl = new File("/dev/fb1").exists() ? new RaspPiGrinderControl() : new DummyGrinderControl();
 
         final MainScreen screen = new MainScreen(new Settings(new File("/opt/coffee/coffee.settings")), grinderControl, display.getContainer());
@@ -78,31 +78,6 @@ public class MainScreen implements TimerCallback
             }
         });
 
-
-/*
-        try
-        {
-            Thread.sleep(2000);
-            display.mouseClick(30, 120);
-            Thread.sleep(1000);
-            display.mouseClick(30, 120);
-            Thread.sleep(1000);
-            display.mouseClick(250, 120);
-            Thread.sleep(1000);
-            display.mouseClick(30, 120);
-            Thread.sleep(1000);
-            display.mouseClick(250, 120);
-            Thread.sleep(1000);
-            display.mouseClick(145, 220);
-            Thread.sleep(1000);
-            display.mouseClick(150, 10);
-        }
-        catch (InterruptedException e)
-        {
-            e.printStackTrace();
-        }
-
-*/
     }
 
     @Override

@@ -36,7 +36,7 @@ public class FrameBufferDisplay implements Display
     public void show()
     {
         frame.pack();
-        //frame.setVisible(true);
+        frame.setVisible(true);
     }
 
 

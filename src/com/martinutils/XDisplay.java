@@ -7,12 +7,12 @@ import java.awt.event.MouseEvent;
 /**
  * Created by martin on 02/01/15.
  */
-public class TestDisplay implements Display
+public class XDisplay implements Display
 {
 
     private final JFrame frame;
 
-    public TestDisplay()
+    public XDisplay()
     {
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
