@@ -13,6 +13,8 @@ public class Timer
     private GrinderControl control;
     private Thread thread;
 
+    private static final long GRINDER_DELAY = 400; // Fiddle factor for grinders which have a delayed start.
+
     public Timer(int grams, double startingGrams, ISettings settings, GrinderControl control)
     {
         this.control = control;
@@ -26,7 +28,7 @@ public class Timer
     public void start(final TimerCallback callback)
     {
         rate = settings.getRate();
-        startTime = System.currentTimeMillis() - (long) (rate * currentGrams);
+        startTime = System.currentTimeMillis() - (long) (rate * currentGrams) + GRINDER_DELAY;
         System.out.println("Set starttime " + startTime + " current: " + System.currentTimeMillis());
         control.start();
         thread = new Thread(new Runnable()
