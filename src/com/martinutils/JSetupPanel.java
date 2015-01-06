@@ -124,6 +124,7 @@ public class JSetupPanel extends JPanel implements CalibratorCallback, ActionLis
     @Override
     public void updateState(CalibratorState state)
     {
+        Backlight.getBacklight().resetTimeout();
         switch (state)
         {
             case START:
@@ -151,6 +152,7 @@ public class JSetupPanel extends JPanel implements CalibratorCallback, ActionLis
     @Override
     public void actionPerformed(ActionEvent actionEvent)
     {
+        Backlight.getBacklight().resetTimeout();
         switch (calibrator.getState())
         {
             case START:

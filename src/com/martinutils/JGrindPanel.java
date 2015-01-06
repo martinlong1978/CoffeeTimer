@@ -48,6 +48,7 @@ public class JGrindPanel extends JPanel
             @Override
             public void itemStateChanged(ItemEvent itemEvent)
             {
+                Backlight.getBacklight().resetTimeout();
                 if (!disableEvents)
                 {
                     disableEvents = true;
@@ -70,6 +71,7 @@ public class JGrindPanel extends JPanel
             @Override
             public void itemStateChanged(ItemEvent itemEvent)
             {
+                Backlight.getBacklight().resetTimeout();
                 if (!disableEvents)
                 {
                     disableEvents = true;
@@ -94,6 +96,7 @@ public class JGrindPanel extends JPanel
             @Override
             public void actionPerformed(ActionEvent actionEvent)
             {
+                Backlight.getBacklight().resetTimeout();
                 grinderActivated();
             }
         });
@@ -103,6 +106,7 @@ public class JGrindPanel extends JPanel
             @Override
             public void actionPerformed(ActionEvent actionEvent)
             {
+                Backlight.getBacklight().resetTimeout();
                 mainScreen.setup();
             }
         });
@@ -112,6 +116,7 @@ public class JGrindPanel extends JPanel
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                Backlight.getBacklight().resetTimeout();
                 mainScreen.startTimer();
             }
         });

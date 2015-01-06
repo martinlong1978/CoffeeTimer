@@ -24,6 +24,8 @@ public class MainScreen implements TimerCallback
     MainScreen(final Settings settings, GrinderControl control, Container parent)
     {
 
+        Backlight.getBacklight();
+
         this.settings = settings;
         this.control = control;
         parentContainer = parent;
@@ -74,6 +76,7 @@ public class MainScreen implements TimerCallback
             @Override
             public void buttonPressed()
             {
+                Backlight.getBacklight().resetTimeout();
                 screen.grinderActivated();
             }
         });

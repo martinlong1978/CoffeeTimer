@@ -45,6 +45,7 @@ public class TimerScreen extends JPanel
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                Backlight.getBacklight().resetTimeout();
                 timerThread.interrupt();
             }
         });

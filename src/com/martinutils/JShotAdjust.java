@@ -31,7 +31,7 @@ public class JShotAdjust extends JButton
             @Override
             public void actionPerformed(ActionEvent actionEvent)
             {
-
+                Backlight.getBacklight().resetTimeout();
                 singleShotProperty.increase(amount);
                 labelListener.updateLabel((int)singleShotProperty.getAmount() + "g");
             }
