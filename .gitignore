@@ -2,3 +2,5 @@ out
 coffee.settings
 .idea/workspace.xml
 /Coffee.jar
+deploy
+builddeploy

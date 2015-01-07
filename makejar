@@ -1,2 +1,7 @@
 rm Coffee.jar
-jar cfmv Coffee.jar Manifest.txt -C out/production/CoffeeTimer/ .
+rm -r out
+mkdir out
+javac -d out -sourcepath src -classpath lib/pi4j-core.jar  src/com/martinutils/MainScreen.java
+cp src/com/martinutils/*.png out/com/martinutils
+jar cfmv Coffee.jar Manifest.txt -C out .
+

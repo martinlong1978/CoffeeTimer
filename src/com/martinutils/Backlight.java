@@ -22,17 +22,20 @@ public class Backlight implements IBacklight
                 synchronized (this)
                 {
                     enable();
-                    screenOff();
                     try
                     {
-                        while (System.currentTimeMillis() < timeoutAt)
+                        while(true)
                         {
-                            wait(timeoutAt - System.currentTimeMillis() + 100);
-                        }
-                        screenOff();
-                        while (System.currentTimeMillis() > timeoutAt)
-                        {
-                            wait(20000);
+                            while (System.currentTimeMillis() < timeoutAt)
+                            {
+                                wait(timeoutAt - System.currentTimeMillis() + 100);
+                            }
+                            screenOff();
+                            while (System.currentTimeMillis() > timeoutAt)
+                            {
+                                wait(20000);
+                            }
+                            screenOn();
                         }
                     }
                     catch (InterruptedException e)
@@ -68,11 +71,13 @@ public class Backlight implements IBacklight
 
     private void screenOff()
     {
+        System.out.println("Switching screen off");
         writeToFile("/sys/class/gpio/gpio252/value", "0");
     }
 
     private void screenOn()
     {
+        System.out.println("Switching screen on");
         writeToFile("/sys/class/gpio/gpio252/value", "1");
     }
 
