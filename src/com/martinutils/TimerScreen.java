@@ -143,9 +143,16 @@ public class TimerScreen extends JPanel
                 {
                     ex.printStackTrace();
                 }
+                resetScreen();
                 mainScreen.complete(0);
             }
         });
         timerThread.start();
+    }
+
+    private void resetScreen()
+    {
+        seconds = 0;
+        secondsLabel.setText("0");
     }
 }
