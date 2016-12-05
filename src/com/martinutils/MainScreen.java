@@ -1,18 +1,11 @@
 package com.martinutils;
 
 import com.pi4j.io.gpio.*;
-import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
-import com.pi4j.io.gpio.event.GpioPinListener;
-import com.pi4j.io.gpio.event.GpioPinListenerDigital;
+import org.tw.pi.framebuffer.FrameBuffer;
 
 import javax.swing.*;
-import javax.swing.text.JTextComponent;
-import javax.swing.text.Keymap;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.beans.PropertyChangeListener;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -23,99 +16,89 @@ public class MainScreen implements TimerCallback
 {
 
     // 5 and 6 are in use by PiTFT. Doh! Use 2 and 3
-    public static final Pin INPUT_PIN = RaspiPin.GPIO_02;  //Pin 13
-    public static final Pin OUTPUT_PIN = RaspiPin.GPIO_03; //Pin 15 - Relay 1
     private final JGrindPanel grindPanel;
     private final JLabel progress;
     private final JSetupPanel setupPanel;
     private Settings settings;
     private GrinderControl control;
-    private long lockout;
     private boolean settingsScreen = false;
 
-    private JFrame frame;
+    private Container parentContainer;
 
-    MainScreen(final Settings settings, GrinderControl control)
+    MainScreen(final Settings settings, GrinderControl control, Container parent)
     {
 
         this.settings = settings;
         this.control = control;
-        frame = new JFrame("CoffeeTimer");
-        frame.setMaximumSize(new Dimension(320, 240));
-        frame.setMinimumSize(new Dimension(320, 240));
-        frame.setPreferredSize(new Dimension(320, 240));
+        parentContainer = parent;
 
         grindPanel = new JGrindPanel(settings, control, this);
         setupPanel = new JSetupPanel(settings, control, this);
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Already there
-        frame.setUndecorated(true);
 
         progress = new JLabel("Ground 0g\n in 0s");
         progress.setHorizontalAlignment(JLabel.CENTER);
         progress.setFont(new Font(progress.getFont().getName(), Font.PLAIN, 30));
 
-        frame.getContentPane().setLayout(new BorderLayout());
-        frame.getContentPane().add(grindPanel);
+        parentContainer.setMaximumSize(new Dimension(320, 240));
+        parentContainer.setMinimumSize(new Dimension(320, 240));
+        parentContainer.setPreferredSize(new Dimension(320, 240));
+        parentContainer.setLayout(new BorderLayout());
+        parentContainer.add(grindPanel);
     }
 
     public void startGrind(boolean doubleShot)
     {
         int amount = doubleShot ? settings.getDoubleShot() : settings.getSingleShot();
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(progress);
+        parentContainer.removeAll();
+        parentContainer.add(progress);
         Timer t = new Timer(amount, 0, settings, control);
         t.start(this);
-    }
-
-    public void show()
-    {
-        javax.swing.SwingUtilities.invokeLater(new Runnable()
-        {
-            public void run()
-            {
-                frame.pack();
-                frame.setVisible(true);
-            }
-        });
     }
 
     public static void main(String[] args)
     {
 
-        final GpioController gpio = GpioFactory.getInstance();
+        final Display display = new File("/dev/fb1").exists() ? new FrameBufferDisplay() : new TestDisplay();
+        final GrinderControl grinderControl = new File("/dev/fb1").exists() ? new RaspPiGrinderControl() : new DummyGrinderControl();
 
-        GpioPinDigitalInput grindButton = gpio.provisionDigitalInputPin(INPUT_PIN, "GrindButton", PinPullResistance.PULL_UP);
-        GpioPinDigitalOutput grindMotor = gpio.provisionDigitalOutputPin(OUTPUT_PIN, "GrindMotor", PinState.LOW);
 
-        final MainScreen screen = new MainScreen(new Settings(new File("coffee.settings")), new RaspPiGrinderControl(grindMotor));
-        screen.show();
-
-        grindButton.addListener(new GpioPinListenerDigital()
+        final MainScreen screen = new MainScreen(new Settings(new File("coffee.settings")), grinderControl, display.getContainer());
+        display.show();
+        grinderControl.addGrindButtonListener(new GrindButtonListener()
         {
             @Override
-            public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent gpioPinDigitalStateChangeEvent)
+            public void buttonPressed()
             {
-                if(gpioPinDigitalStateChangeEvent.getState() == PinState.LOW)
-                {
-                    screen.grinderActivated();
-                }
+                screen.grinderActivated();
             }
         });
 
-        while (true)
+
+/*
+        try
         {
-            try
-            {
-                System.in.read();
-                screen.grinderActivated();
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
+            Thread.sleep(2000);
+            display.mouseClick(30, 120);
+            Thread.sleep(1000);
+            display.mouseClick(30, 120);
+            Thread.sleep(1000);
+            display.mouseClick(250, 120);
+            Thread.sleep(1000);
+            display.mouseClick(30, 120);
+            Thread.sleep(1000);
+            display.mouseClick(250, 120);
+            Thread.sleep(1000);
+            display.mouseClick(145, 220);
+            Thread.sleep(1000);
+            display.mouseClick(150, 10);
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
         }
 
+*/
     }
 
     @Override
@@ -146,8 +129,8 @@ public class MainScreen implements TimerCallback
             @Override
             public void run()
             {
-                frame.getContentPane().removeAll();
-                frame.getContentPane().add(grindPanel);
+                parentContainer.removeAll();
+                parentContainer.add(grindPanel);
                 grindPanel.updateUI();
             }
         });
@@ -156,8 +139,8 @@ public class MainScreen implements TimerCallback
     public void setup()
     {
         settingsScreen = true;
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(setupPanel);
+        parentContainer.removeAll();
+        parentContainer.add(setupPanel);
         setupPanel.updateUI();
     }
 
