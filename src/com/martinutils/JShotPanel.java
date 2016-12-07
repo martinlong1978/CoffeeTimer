@@ -18,9 +18,9 @@ public class JShotPanel extends javax.swing.JPanel
         toggleButton = new JShotToggle(name, icon);
 
         setLayout(new FlowLayout());
-        setPreferredSize(new Dimension(160,160));
-        plusButton = new JShotAdjust("+", 1, shotProperty, toggleButton, 100, 60);
-        minusButton = new JShotAdjust("-", -1, shotProperty, toggleButton, 100, 60);
+        setPreferredSize(new Dimension(240,200));
+        plusButton = new JShotAdjust("+", 1, shotProperty, toggleButton, 100, 50);
+        minusButton = new JShotAdjust("-", -1, shotProperty, toggleButton, 100, 50);
         add(toggleButton);
         add(minusButton);
         add(plusButton);
