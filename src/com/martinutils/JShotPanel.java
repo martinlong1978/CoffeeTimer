@@ -19,8 +19,8 @@ public class JShotPanel extends javax.swing.JPanel
 
         setLayout(new FlowLayout());
         setPreferredSize(new Dimension(160,160));
-        plusButton = new JShotAdjust("+", 1, shotProperty, toggleButton, 68, 40);
-        minusButton = new JShotAdjust("-", -1, shotProperty, toggleButton, 68, 40);
+        plusButton = new JShotAdjust("+", 1, shotProperty, toggleButton, 100, 60);
+        minusButton = new JShotAdjust("-", -1, shotProperty, toggleButton, 100, 60);
         add(toggleButton);
         add(minusButton);
         add(plusButton);
