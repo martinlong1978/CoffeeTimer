@@ -39,9 +39,9 @@ public class MainScreen implements TimerCallback
         progress.setHorizontalAlignment(JLabel.CENTER);
         progress.setFont(new Font(progress.getFont().getName(), Font.PLAIN, 30));
 
-        parentContainer.setMaximumSize(new Dimension(320, 240));
-        parentContainer.setMinimumSize(new Dimension(320, 240));
-        parentContainer.setPreferredSize(new Dimension(320, 240));
+        parentContainer.setMaximumSize(new Dimension(480, 320));
+        parentContainer.setMinimumSize(new Dimension(480, 320));
+        parentContainer.setPreferredSize(new Dimension(480, 320));
         parentContainer.setLayout(new BorderLayout());
         parentContainer.add(grindPanel);
     }
